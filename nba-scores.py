@@ -32,16 +32,23 @@ def get_scoreboard():
 
 def get_stats():
     stats = get_links()['leagueTeamStatsLeaders']
-    teams = get(BASE_URL + stats).json()['league']['standard']['regularSeason']['teams']
+    teams = get(
+        BASE_URL + stats).json()['league']['standard']['regularSeason']['teams']
 
     teams = list(filter(lambda x: x['name'] != "Team", teams))
-    teams.sort(key= lambda x: int(x['ppg']['rank']))
+    teams.sort(key=lambda x: (x['ppg'],['rank'])) #Quite el int, ya no marca error y si corre pero idk xd
 
-    for i, team in enumerate (teams):
+    for i, team in enumerate(teams):
         name = team['name']
         nickname = team['nickname']
         ppg = team['ppg']['avg']
         print(f"{i+1}.{name} - {nickname} - {ppg}")
 
+#Muestra a los equipos lideres en la tabla segun su rank
 
+
+#Desarrollar mas el programa, agregar un menu que permita al usuario elegir cualquiera de los 3 metodos, agregar mas metodos como mostrar a los jugadores lideres en puntos, etc.
+
+
+get_scoreboard()
 get_stats()
