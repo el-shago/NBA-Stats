@@ -1,7 +1,7 @@
 from requests import get
 from pprint import PrettyPrinter 
 
-BASE_URL = "https://data.nba.net"
+BASE_URL = "https://data.nba.net" #URL del que vamos a pedir informacion
 ALL_JSON = "/prod/v1/today.json"
 
 printer =  PrettyPrinter()
@@ -11,7 +11,7 @@ def get_links():
     data = get(BASE_URL + ALL_JSON).json()
     links = data['links']
     return links
-
+#Dara el link del que vamos a sacar la informacion 
 
 def get_scoreboard():
     scoreboard = get_links()['currentScoreboard']
@@ -24,14 +24,24 @@ def get_scoreboard():
         period = game['period']
 
         print("-------------------------------------------------")
-        print(f"{home_team['triCode']} vs {away_team['triCode']}, {clock}, {period} ")
+        print(f"{home_team['triCode']} vs {away_team['triCode']}")
         print(f"{home_team['score']} - {away_team['score']}")
         print(f"{period['current']} - {clock}")
+#Funcion para mostrar el Scoreboard de los juegos que se estan jugando actualmente
+
 
 def get_stats():
     stats = get_links()['leagueTeamStatsLeaders']
-    data = get(BASE_URL + stats).json()['league']['standard']['regularSeason']['teams']
+    teams = get(BASE_URL + stats).json()['league']['standard']['regularSeason']['teams']
+
+    teams = list(filter(lambda x: x['name'] != "Team", teams))
+    teams.sort(key= lambda x: int(x['ppg']['rank']))
+
+    for i, team in enumerate (teams):
+        name = team['name']
+        nickname = team['nickname']
+        ppg = team['ppg']['avg']
+        print(f"{i+1}.{name} - {nickname} - {ppg}")
 
 
-
-get_scoreboard()
+get_stats()
