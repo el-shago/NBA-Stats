@@ -25,9 +25,13 @@ def get_scoreboard():
 
         print("-------------------------------------------------")
         print(f"{home_team['triCode']} vs {away_team['triCode']}, {clock}, {period} ")
+        print(f"{home_team['score']} - {away_team['score']}")
+        print(f"{period['current']} - {clock}")
 
+def get_stats():
+    stats = get_links()['leagueTeamStatsLeaders']
+    data = get(BASE_URL + stats).json()['league']['standard']['regularSeason']['teams']
 
-    
 
 
 get_scoreboard()
