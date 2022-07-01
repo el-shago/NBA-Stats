@@ -9,8 +9,10 @@ printer =  PrettyPrinter()
 
 def get_links():
     data = get(BASE_URL + ALL_JSON).json()
+    #printer.pprint(data)
     links = data['links']
     return links
+    
 #Dara el link del que vamos a sacar la informacion 
 
 def get_scoreboard():
@@ -42,13 +44,35 @@ def get_stats():
         name = team['name']
         nickname = team['nickname']
         ppg = team['ppg']['avg']
+        print("-----------------------------------")
         print(f"{i+1}.{name} - {nickname} - {ppg}")
+
+def get_players():
+    stats = get_links()['leagueRosterPlayers']
+    players = get(BASE_URL + stats).json()['league']['standard']
+
+    #printer.pprint(players1[0].keys())
+
+    for player in players:
+        fname = player['firstName']
+        lname = player['lastName']
+        jersey = player['jersey']
+        pos = player ['pos']
+        height = player['heightFeet']
+        team = player['lastAffiliation']
+        print("---------------------------")
+        print(f"{fname} {lname} - {team}")
+        print(f"Number: {jersey}") 
+        print(f"Height: {height} feet")
+        print(f"Position: {pos}")
 
 #Muestra a los equipos lideres en la tabla segun su rank
 
 
 #Desarrollar mas el programa, agregar un menu que permita al usuario elegir cualquiera de los 3 metodos, agregar mas metodos como mostrar a los jugadores lideres en puntos, etc.
 
-
+get_players()
+'''
 get_scoreboard()
 get_stats()
+'''
