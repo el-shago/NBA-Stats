@@ -23,11 +23,18 @@ score = Button(main_window, text= "Scoreboards",
 font=('Arial', 12, 'bold'),
 justify=CENTER,
 command=get_scoreboard)
-score.place(relx=0.2, rely=0.5, anchor=W)
+score.place(relx=0.1, rely=0.5, anchor=W)
 
-leaders = Button(main_window, text= "Team Leaders", command=get_stats)
-leaders.place(relx=0.8, rely=0.5, anchor=E)
-players = Button(main_window, text= "Player Info", command=get_players)
+leaders = Button(main_window, text= "Team Leaders", 
+font=('Arial', 12, 'bold'),
+justify=CENTER,
+command=get_stats)
+leaders.place(relx=0.9, rely=0.5, anchor=E)
+
+players = Button(main_window, text= "Player Info",
+font=('Arial', 12, 'bold'),
+justify=CENTER,
+command=get_players)
 players.place(relx=0.5, rely=0.8, anchor=S)
 
 main_window.mainloop()
