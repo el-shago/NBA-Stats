@@ -12,7 +12,7 @@ main_window.title("NBA NOW")
 Title = Label(main_window, text= "NBA NOW",
 font=('Arial', 25, 'bold'),
 relief = RAISED,
-bd=2,
+bd=6,
 padx=20,
 pady=20,
 justify=CENTER)
@@ -22,19 +22,27 @@ Title.place(relx= 0.5, rely=0.030, anchor=N)
 score = Button(main_window, text= "Scoreboards",
 font=('Arial', 12, 'bold'),
 justify=CENTER,
+state=ACTIVE,
+bd=1,
 command=get_scoreboard)
 score.place(relx=0.1, rely=0.5, anchor=W)
 
 leaders = Button(main_window, text= "Team Leaders", 
 font=('Arial', 12, 'bold'),
 justify=CENTER,
+state=ACTIVE,
+bd=1,
 command=get_stats)
 leaders.place(relx=0.9, rely=0.5, anchor=E)
 
 players = Button(main_window, text= "Player Info",
 font=('Arial', 12, 'bold'),
 justify=CENTER,
+state=ACTIVE,
+bd=1,
 command=get_players)
 players.place(relx=0.5, rely=0.8, anchor=S)
 
 main_window.mainloop()
+
+#Falta decorar pero acomodado ya esta, falta tambien lograr que los metodos se corran en una ventana en vez de la terminal

@@ -44,8 +44,14 @@ def get_stats():
         name = team['name']
         nickname = team['nickname']
         ppg = team['ppg']['avg']
+        apg = team['apg']['avg']
         print("-----------------------------------")
-        print(f"{i+1}.{name} - {nickname} - {ppg}")
+        print(f"{i+1}. {name} - {nickname}")
+        print(f"    PPG: {ppg}")
+        print(f"    APG: {apg}")
+
+    #printer.pprint(teams[0].keys())
+
 
 def get_players():
     stats = get_links()['leagueRosterPlayers']
@@ -71,7 +77,7 @@ def get_players():
 
 #Desarrollar mas el programa, agregar un menu que permita al usuario elegir cualquiera de los 3 metodos, agregar mas metodos como mostrar a los jugadores lideres en puntos, etc.
 
-
+get_stats()
 '''
 get_players()
 get_scoreboard()
