@@ -12,7 +12,7 @@ def score_windowP():
     score_window=Tk()
     score_window.geometry("420x420")
     score_window.title("Scoreboards")
-    guiones = Label(score_window, text="-------------------------------------------------",
+    guiones = Label(score_window, text=f"-------------------------------------------------",
     font=('Arial', 25, 'bold'),
     relief = RAISED,
     bd=6,
@@ -63,7 +63,7 @@ font=('Arial', 12, 'bold'),
 justify=CENTER,
 state=ACTIVE,
 bd=1,
-command=score_window1)
+command=score_windowP)
 score.place(relx=0.1, rely=0.5, anchor=W)
 
 leaders = Button(main_window, text= "Team Leaders", 
@@ -71,7 +71,7 @@ font=('Arial', 12, 'bold'),
 justify=CENTER,
 state=ACTIVE,
 bd=1,
-command=leaders_window1)
+command=leaders_windowP)
 leaders.place(relx=0.9, rely=0.5, anchor=E)
 
 players = Button(main_window, text= "Player Info",
@@ -79,7 +79,7 @@ font=('Arial', 12, 'bold'),
 justify=CENTER,
 state=ACTIVE,
 bd=1,
-command=players_window1)
+command=players_windowP)
 players.place(relx=0.5, rely=0.8, anchor=S)
 
 main_window.mainloop()
