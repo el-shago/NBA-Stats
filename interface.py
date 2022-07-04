@@ -8,7 +8,7 @@ main_window = Tk()
 main_window.geometry("420x420")
 main_window.title("NBA NOW")
 
-def score_window1():
+def score_windowP():
     score_window=Tk()
     score_window.geometry("420x420")
     score_window.title("Scoreboards")
@@ -21,7 +21,7 @@ def score_window1():
     justify=CENTER)
     guiones.place(relx= 0.5, rely=0.030, anchor=N)
 
-def leaders_window1():
+def leaders_windowP():
     leaders_window=Tk()
     leaders_window.geometry("420x420")
     leaders_window.title("Team Leaders")
@@ -34,7 +34,7 @@ def leaders_window1():
     justify=CENTER)
     guiones.place(relx= 0.5, rely=0.030, anchor=N)
 
-def players_window1():
+def players_windowP():
     players_window=Tk()
     players_window.geometry("420x420")
     players_window.title("Players Info")
