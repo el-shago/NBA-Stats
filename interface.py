@@ -9,17 +9,62 @@ main_window.geometry("420x420")
 main_window.title("NBA NOW")
 
 def score_windowP():
+    '''
     score_window=Tk()
     score_window.geometry("420x420")
     score_window.title("Scoreboards")
-    guiones = Label(score_window, text=f"-------------------------------------------------",
-    font=('Arial', 25, 'bold'),
-    relief = RAISED,
-    bd=6,
-    padx=20,
-    pady=20,
-    justify=CENTER)
-    guiones.place(relx= 0.5, rely=0.030, anchor=N)
+    '''
+    scoreboard = get_links()['currentScoreboard']
+    games = get(BASE_URL + scoreboard).json()['games']
+    
+
+    for game in games:
+        home_team = game['hTeam']
+        away_team = game['vTeam']
+        clock = game['clock']
+        period = game['period']
+        
+        score_window=Tk()
+        score_window.geometry("420x420")
+        score_window.title("Scoreboards")
+        
+        guiones = Label(score_window, text=f"-------------------------------------------------",
+        font=('Arial', 25, 'bold'),
+        relief = RAISED,
+        bd=6,
+        padx=20,
+        pady=20,
+        justify=CENTER)
+        guiones.place(relx= 0.5, rely=0.030, anchor=N)
+
+
+        teams = Label(score_window, text=f"{home_team['triCode']} vs {away_team['triCode']}",
+        font=('Arial', 25, 'bold'),
+        relief = RAISED,
+        bd=6,
+        padx=20,
+        pady=20,
+        justify=CENTER)
+        teams.place(relx= 0.5, rely=0.4, anchor=CENTER)
+
+        score = Label(score_window, text=f"{home_team['score']} - {away_team['score']}",
+        font=('Arial', 25, 'bold'),
+        relief = RAISED,
+        bd=6,
+        padx=20,
+        pady=20,
+        justify=CENTER)
+        score.place(relx= 0.5, rely=0.65, anchor=CENTER)
+
+        clockandperiod = Label(score_window, text = f"{period['current']} - {clock}",
+        font=('Arial', 25, 'bold'),
+        relief = RAISED,
+        bd=6,
+        padx=20,
+        pady=20,
+        justify=CENTER)
+        clockandperiod.place(relx= 0.5, rely=0.9, anchor=CENTER)
+
 
 def leaders_windowP():
     leaders_window=Tk()
@@ -84,4 +129,5 @@ players.place(relx=0.5, rely=0.8, anchor=S)
 
 main_window.mainloop()
 
-#Falta decorar pero acomodado ya esta, falta tambien lograr que los metodos se corran en una ventana en vez de la terminal
+#Falta decorar pero acomodado ya esta
+#Scoreboard ya corre en ventanas, falta decorar acomodar bien, poner scroll en vez de multiples ventanas y buscar la manera de que se actualice en tiempo real

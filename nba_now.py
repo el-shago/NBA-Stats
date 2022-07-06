@@ -5,7 +5,8 @@ BASE_URL = "https://data.nba.net" #URL del que vamos a pedir informacion
 ALL_JSON = "/prod/v1/today.json"
 
 printer =  PrettyPrinter()
-
+home_team = 0
+away_team = 0
 
 def get_links():
     data = get(BASE_URL + ALL_JSON).json()
@@ -77,7 +78,7 @@ def get_players():
 
 #Desarrollar mas el programa, agregar un menu que permita al usuario elegir cualquiera de los 3 metodos, agregar mas metodos como mostrar a los jugadores lideres en puntos, etc.
 
-get_stats()
+get_scoreboard()
 '''
 get_players()
 get_scoreboard()
