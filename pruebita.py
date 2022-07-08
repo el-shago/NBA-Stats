@@ -35,6 +35,9 @@ def score_windowP():
     #Configurando el canvas
     my_canvas.configure(yscrollcommand=my_scrollbar.set)
     my_canvas.bind('<Configure>', lambda e: my_canvas.configure(scrollregion= my_canvas.bbox("all")))
+    def _on_mouse_wheel(event):
+        my_canvas.yview_scroll(-1 * int((event.delta / 120)), "units")
+    my_canvas.bind_all("<MouseWheel>", _on_mouse_wheel)
 
     #Creando otro Frame dentro del canvas
     second_frame=Frame(my_canvas)

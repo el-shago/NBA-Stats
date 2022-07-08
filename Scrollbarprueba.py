@@ -1,12 +1,18 @@
 from tkinter import *
 from tkinter import ttk
+import nba_now
+from nba_now import * 
+
+n = 0.030
+scoreboard = get_links()['currentScoreboard']
+games = get(BASE_URL + scoreboard).json()['games']
 
 root = Tk()
 root.title('Learn To Code at Codemy.com')
 
-alto=600
-ancho=625
-anchoalto="625x600"
+alto=420
+ancho=420
+anchoalto="420x420"
 root.geometry(anchoalto)
 # Create A Main Frame
 main_frame = Frame(root,width=ancho,height=alto)
@@ -35,7 +41,22 @@ altura = 0
 for thing in range(100):
     posY = posY + 30
     altura = altura + 30
-    Button(second_frame, text=f'Button {thing} Yo!').place(x=50,y=posY)
+    for game in games:
+        home_team = game['hTeam']
+        away_team = game['vTeam']
+        clock = game['clock']
+        period = game['period']
+        
+        guiones = Label(second_frame, text=f"{home_team['triCode']} vs {away_team['triCode']}\n{home_team['score']} - {away_team['score']}\n{period['current']} - {clock}",
+        font=('Arial', 25, 'bold'),
+        relief = RAISED,
+        bd=6,
+        padx=20,
+        pady=20,
+        justify=CENTER)
+        guiones.place(relx= 0.5, rely= n, anchor=N)
+        n+= 0.45
+        guiones.place(x=50,y=posY)
     second_frame.configure(height=altura) #Changing the height of the second_frame each time a button is added
 
 root.mainloop()
