@@ -9,11 +9,11 @@ main_window.geometry("420x420")
 main_window.title("NBA NOW")
 
 def score_windowP():
-    '''
+    n = 0.030
     score_window=Tk()
     score_window.geometry("420x420")
     score_window.title("Scoreboards")
-    '''
+    
     scoreboard = get_links()['currentScoreboard']
     games = get(BASE_URL + scoreboard).json()['games']
     
@@ -24,73 +24,15 @@ def score_windowP():
         clock = game['clock']
         period = game['period']
         
-        score_window=Tk()
-        score_window.geometry("420x420")
-        score_window.title("Scoreboards")
-        
-        guiones = Label(score_window, text=f"-------------------------------------------------",
+        guiones = Label(score_window, text=f"{home_team['triCode']} vs {away_team['triCode']}\n{home_team['score']} - {away_team['score']}\n{period['current']} - {clock}",
         font=('Arial', 25, 'bold'),
         relief = RAISED,
         bd=6,
         padx=20,
         pady=20,
         justify=CENTER)
-        guiones.place(relx= 0.5, rely=0.030, anchor=N)
-
-
-        teams = Label(score_window, text=f"{home_team['triCode']} vs {away_team['triCode']}",
-        font=('Arial', 25, 'bold'),
-        relief = RAISED,
-        bd=6,
-        padx=20,
-        pady=20,
-        justify=CENTER)
-        teams.place(relx= 0.5, rely=0.4, anchor=CENTER)
-
-        score = Label(score_window, text=f"{home_team['score']} - {away_team['score']}",
-        font=('Arial', 25, 'bold'),
-        relief = RAISED,
-        bd=6,
-        padx=20,
-        pady=20,
-        justify=CENTER)
-        score.place(relx= 0.5, rely=0.65, anchor=CENTER)
-
-        clockandperiod = Label(score_window, text = f"{period['current']} - {clock}",
-        font=('Arial', 25, 'bold'),
-        relief = RAISED,
-        bd=6,
-        padx=20,
-        pady=20,
-        justify=CENTER)
-        clockandperiod.place(relx= 0.5, rely=0.9, anchor=CENTER)
-
-
-def leaders_windowP():
-    leaders_window=Tk()
-    leaders_window.geometry("420x420")
-    leaders_window.title("Team Leaders")
-    guiones = Label(leaders_window, text="",
-    font=('Arial', 25, 'bold'),
-    relief = RAISED,
-    bd=6,
-    padx=20,
-    pady=20,
-    justify=CENTER)
-    guiones.place(relx= 0.5, rely=0.030, anchor=N)
-
-def players_windowP():
-    players_window=Tk()
-    players_window.geometry("420x420")
-    players_window.title("Players Info")
-    guiones = Label(players_window, text="",
-    font=('Arial', 25, 'bold'),
-    relief = RAISED,
-    bd=6,
-    padx=20,
-    pady=20,
-    justify=CENTER)
-    guiones.place(relx= 0.5, rely=0.030, anchor=N)
+        guiones.place(relx= 0.5, rely= n, anchor=N)
+        n+= 0.45
 
 #Label
 Title = Label(main_window, text= "NBA NOW",
@@ -110,7 +52,7 @@ state=ACTIVE,
 bd=1,
 command=score_windowP)
 score.place(relx=0.1, rely=0.5, anchor=W)
-
+'''
 leaders = Button(main_window, text= "Team Leaders", 
 font=('Arial', 12, 'bold'),
 justify=CENTER,
@@ -126,8 +68,8 @@ state=ACTIVE,
 bd=1,
 command=players_windowP)
 players.place(relx=0.5, rely=0.8, anchor=S)
-
+'''
 main_window.mainloop()
 
 #Falta decorar pero acomodado ya esta
-#Scoreboard ya corre en ventanas, falta decorar acomodar bien, poner scroll en vez de multiples ventanas y buscar la manera de que se actualice en tiempo real
+#Scoreboard ya corre en ventanas, falta decorar, poner scroll y buscar la manera de que se actualice en tiempo real

@@ -1,6 +1,9 @@
 from tkinter import *
-from turtle import position
+from turtle import position, right
 from weakref import WeakSet
+from tkinter import ttk
+from pyparsing import originalTextFor
+from setuptools import Command
 import nba_now
 from nba_now import *
 
@@ -16,6 +19,28 @@ def score_windowP():
     score_window=Tk()
     score_window.geometry("420x420")
     score_window.title("Scoreboards")
+
+    #Creando un frame
+    main_frame = Frame(score_window)
+    main_frame.pack(fill=BOTH, expand=1)
+
+    #Creando un canvas
+    my_canvas = Canvas(main_frame)
+    my_canvas.pack(side=LEFT, fill=BOTH, expand=1)
+
+    #Ahora si creando la scrollbar
+    my_scrollbar = ttk.Scrollbar(main_frame, orient= VERTICAL, command=my_canvas.yview)
+    my_scrollbar.pack(side=RIGHT, fill=Y)
+
+    #Configurando el canvas
+    my_canvas.configure(yscrollcommand=my_scrollbar.set)
+    my_canvas.bind('<Configure>', lambda e: my_canvas.configure(scrollregion= my_canvas.bbox("all")))
+
+    #Creando otro Frame dentro del canvas
+    second_frame=Frame(my_canvas)
+
+    #Añadiendo la nueva frame a una ventana en el canvas
+    my_canvas.create_window((0,0), window=second_frame, anchor="nw")
     
     scoreboard = get_links()['currentScoreboard']
     games = get(BASE_URL + scoreboard).json()['games']
@@ -27,7 +52,7 @@ def score_windowP():
         clock = game['clock']
         period = game['period']
         
-        guiones = Label(score_window, text=f"{home_team['triCode']} vs {away_team['triCode']}\n{home_team['score']} - {away_team['score']}\n{period['current']} - {clock}",
+        guiones = Label(second_frame, text=f"{home_team['triCode']} vs {away_team['triCode']}\n{home_team['score']} - {away_team['score']}\n{period['current']} - {clock}",
         font=('Arial', 25, 'bold'),
         relief = RAISED,
         bd=6,
