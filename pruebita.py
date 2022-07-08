@@ -12,6 +12,7 @@ main_window.title("NBA NOW")
 
 
 def score_windowP():
+    n = 0.030
     score_window=Tk()
     score_window.geometry("420x420")
     score_window.title("Scoreboards")
@@ -33,7 +34,8 @@ def score_windowP():
         padx=20,
         pady=20,
         justify=CENTER)
-        guiones.place(relx= 0.5, rely=0.030, anchor=N)
+        guiones.place(relx= 0.5, rely= n, anchor=N)
+        n+= 0.45
         
 '''
         scrollbar = Scrollbar(score_window)
