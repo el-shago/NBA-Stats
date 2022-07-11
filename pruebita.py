@@ -63,8 +63,8 @@ def score_windowP():
 
 def leaders_windowP():
     leaders_window=Tk()
-    leaders_window.resizable(False, False)
-    leaders_window.geometry("420x420")
+    #leaders_window.resizable(False, False)
+    leaders_window.geometry("620x420")
     leaders_window.title("Team Leaders")
     frame_container=Frame(leaders_window)
     
@@ -78,7 +78,7 @@ def leaders_windowP():
     teams = get(BASE_URL + stats).json()['league']['standard']['regularSeason']['teams']
 
     teams = list(filter(lambda x: x['name'] != "Team", teams))
-    teams.sort(key=lambda x: (x['ppg'],['rank'])) #Quite el int, ya no marca error y si corre pero idk xd
+    teams.sort(key=lambda x: (x['ppg'],['rank'])) 
 
     for i, team in enumerate(teams):
         n = 0.030
@@ -88,14 +88,14 @@ def leaders_windowP():
         apg = team['apg']['avg']
         
 
-        data = Label(frame2, text=f"{i+1}. {name} - {nickname}\n PPG: {ppg}\n APG: {apg}",
+        data = Label(frame2, text=f"{i+1}. {name} - {nickname}\n    PPG: {ppg}\n    APG: {apg}",
         font=('Arial', 25, 'bold'),
         relief = RIDGE,
         bd=6,
         padx=0,
-        pady=20,
+        pady=30,
         borderwidth= 5,
-        justify=CENTER)
+        justify=LEFT)
         data.place(relx= 0, rely= n, anchor=N)
         
         n+= 0.45
