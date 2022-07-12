@@ -63,7 +63,7 @@ def score_windowP():
 
 def leaders_windowP():
     leaders_window=Tk()
-    #leaders_window.resizable(False, False)
+    leaders_window.resizable(False, False)
     leaders_window.geometry("620x420")
     leaders_window.title("Team Leaders")
     frame_container=Frame(leaders_window)
@@ -72,7 +72,9 @@ def leaders_windowP():
     canvas_container=Canvas(frame_container, height=420)
     frame2=Frame(canvas_container)
     myscrollbar=Scrollbar(frame_container,orient="vertical",command=canvas_container.yview) # will be visible if the frame2 is to to big for the canvas
-    canvas_container.create_window((0,0),window=frame2,anchor='nw')
+    canvas_container.create_window((0,0),window=frame2,anchor='nw', width=620)
+    
+    
 
     stats = get_links()['leagueTeamStatsLeaders']
     teams = get(BASE_URL + stats).json()['league']['standard']['regularSeason']['teams']
@@ -101,15 +103,17 @@ def leaders_windowP():
         n+= 0.45
         data.pack()
 
+
     frame2.update() # update frame2 height so it's no longer 0 ( height is 0 when it has just been created )
     canvas_container.configure(yscrollcommand=myscrollbar.set, scrollregion="0 0 0 %s" % frame2.winfo_height()) # the scrollregion mustbe the size of the frame inside it,
-                                                                                                                #in this case "x=0 y=0 width=0 height=frame2height"
+    
+                                                                       #in this case "x=0 y=0 width=0 height=frame2height"
                                                                                                                 #width 0 because we only scroll verticaly so don't mind about the width.
 
-    canvas_container.pack(side=LEFT)
+    canvas_container.pack(fill= X, expand=True)
     myscrollbar.pack(side=RIGHT, fill = Y)
 
-    frame_container.pack()
+    frame_container.pack(fill= X, expand=True)
 
 '''
 def players_windowP():
