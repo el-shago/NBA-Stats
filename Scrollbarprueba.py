@@ -14,12 +14,12 @@ games = get(BASE_URL + scoreboard).json()['games']
 
 win = Tk()
 win.title('MyScroller')
-win.geometry("620x420")
-#win.resizable(False, False)
+win.geometry("620x520")
+win.resizable(False, False)
 
 wrapper1= LabelFrame(win)
 
-mycanvas = Canvas(wrapper1, width=520)
+mycanvas = Canvas(wrapper1, width=520, height=520)
 mycanvas.pack(side=LEFT)
 
 
@@ -34,7 +34,7 @@ mycanvas.bind('<Configure>', lambda e: mycanvas.configure(scrollregion = mycanva
 myframe = Frame(mycanvas)
 mycanvas.create_window((0,0), window=myframe, anchor="nw")
 
-wrapper1.pack(fill="both", expand="yes", padx=10, pady=10)
+wrapper1.pack(fill="both", expand="yes", padx=0, pady=0)
 
 stats = get_links()['leagueTeamStatsLeaders']
 teams = get(BASE_URL + stats).json()['league']['standard']['regularSeason']['teams']
