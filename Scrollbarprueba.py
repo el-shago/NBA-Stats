@@ -1,6 +1,7 @@
 
 from tkinter import *
 from tkinter import ttk
+from turtle import left
 
 from debugpy import configure
 from setuptools import Command
@@ -14,11 +15,11 @@ games = get(BASE_URL + scoreboard).json()['games']
 win = Tk()
 win.title('MyScroller')
 win.geometry("620x420")
-win.resizable(False, False)
+#win.resizable(False, False)
 
 wrapper1= LabelFrame(win)
 
-mycanvas = Canvas(wrapper1)
+mycanvas = Canvas(wrapper1, width=420)
 mycanvas.pack(side=LEFT)
 
 
@@ -28,7 +29,7 @@ yscrollbar.pack(side=RIGHT, fill="y")
 
 mycanvas.configure(yscrollcommand=yscrollbar.set)
 
-mycanvas.bind('<Configure>', command = lambda e: mycanvas.scrollregion = mycanvas.bbox('all'))
+mycanvas.bind('<Configure>', lambda e: mycanvas.configure(scrollregion = mycanvas.bbox('all')))
 
 myframe = Frame(mycanvas)
 mycanvas.create_window((0,0), window=myframe, anchor="nw")
@@ -56,7 +57,7 @@ for i, team in enumerate(teams):
     padx=0,
     pady=30,
     borderwidth= 5,
-    justify= CENTER)
+    justify= LEFT)
     data.place(relx= 0, rely= n, anchor=N)
         
     n+= 0.45
