@@ -19,7 +19,7 @@ win.geometry("620x420")
 
 wrapper1= LabelFrame(win)
 
-mycanvas = Canvas(wrapper1, width=420)
+mycanvas = Canvas(wrapper1, width=520)
 mycanvas.pack(side=LEFT)
 
 
