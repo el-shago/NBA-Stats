@@ -206,3 +206,5 @@ players.place(relx=0.5, rely=0.8, anchor=S)
 
 
 main_window.mainloop()
+
+#Players info falta arreglar ahi el espaciado, por que se deja de ver y porque no se puede alinear todo a la izquierda tal vez pueda copiarlo del primer metodo
