@@ -148,4 +148,4 @@ main_window.mainloop()
 
 #Falta decorar pero acomodado ya esta
 #Scoreboard ya corre en una sola ventana, falta decorar y buscar la manera de que se actualice en tiempo real
-#Falta corregir la scrollbar de Team Leaders y arreglar el programa para la informacion de los jugadores, despues de eso empezar a decorar
+#Falta arreglar el programa para la informacion de los jugadores, despues de eso empezar a decorar

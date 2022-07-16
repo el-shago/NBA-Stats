@@ -115,38 +115,60 @@ def leaders_windowP():
         n+= 0.45
         data.pack()
 
-'''
+
 def players_windowP():
-    players_window=Tk()
-    players_window.geometry("520x520")
-    players_window.title("Players Info")
+    n = 0.030
 
-    stats = get_links()['leagueTeamStatsLeaders']
-    teams = get(BASE_URL + stats).json()['league']['standard']['regularSeason']['teams']
+    win = Tk()
+    win.title('Player Info')
+    win.geometry("820x520")
+    win.resizable(False, False)
 
-    teams = list(filter(lambda x: x['name'] != "Team", teams))
-    teams.sort(key=lambda x: (x['ppg'],['rank'])) #Quite el int, ya no marca error y si corre pero idk xd
+    wrapper1= LabelFrame(win)
 
-    for i, team in enumerate(teams):
-        name = team['name']
-        nickname = team['nickname']
-        ppg = team['ppg']['avg']
-        apg = team['apg']['avg']
-        
+    mycanvas = Canvas(wrapper1, width=800, height=520)
+    mycanvas.pack(side=LEFT)
 
-    data = Label(players_window, text=f"{i+1}. {name} - {nickname}\n PPG: {ppg}\n APG: {apg}",
-    font=('Arial', 25, 'bold'),
-    relief = RIDGE,
-    bd=6,
-    padx=20,
-    pady=20,
-    borderwidth= 5,
-    justify=CENTER)
-    data.place(relx= 0.5, rely= n, anchor=N)
-    
-    n+= 0.45
-    data.pack()
-'''
+
+
+    yscrollbar = ttk.Scrollbar(wrapper1, orient="vertical", command= mycanvas.yview)
+    yscrollbar.pack(side=RIGHT, fill="y")
+
+    mycanvas.configure(yscrollcommand=yscrollbar.set)
+
+    mycanvas.bind('<Configure>', lambda e: mycanvas.configure(scrollregion = mycanvas.bbox('all')))
+
+    myframe = Frame(mycanvas)
+    mycanvas.create_window((0,0), window=myframe, anchor="nw")
+
+    wrapper1.pack(fill="both", expand="yes", padx=0, pady=0)
+
+    stats = get_links()['leagueRosterPlayers']
+    players = get(BASE_URL + stats).json()['league']['standard']
+
+
+    for player in players:
+        fname = player['firstName']
+        lname = player['lastName']
+        jersey = player['jersey']
+        pos = player ['pos']
+        height = player['heightFeet']
+        team = player['lastAffiliation']
+
+        data = Label(myframe, text=f"{fname} {lname} - {team}\n    Number: {jersey}\n    Height: {height} feet\n    Position: {pos}",
+        font=('Arial', 25, 'bold'),
+        relief = RIDGE,
+        bd=6,
+        padx=0,
+        pady=30,
+        borderwidth= 5,
+        justify= LEFT)
+        data.place(relx= 0, rely= n, anchor=N)
+            
+        n+= 0.45
+        data.pack()
+
+
 #Label
 Title = Label(main_window, text= "NBA NOW",
 font=('Arial', 25, 'bold'),
@@ -173,7 +195,7 @@ state=ACTIVE,
 bd=1,
 command=leaders_windowP)
 leaders.place(relx=0.9, rely=0.5, anchor=E)
-'''
+
 players = Button(main_window, text= "Player Info",
 font=('Arial', 12, 'bold'),
 justify=CENTER,
@@ -181,6 +203,6 @@ state=ACTIVE,
 bd=1,
 command=players_windowP)
 players.place(relx=0.5, rely=0.8, anchor=S)
-'''
+
 
 main_window.mainloop()
