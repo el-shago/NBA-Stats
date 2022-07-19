@@ -5,6 +5,9 @@ import nba_now
 from nba_now import *
 from tkinter import ttk
 
+main_window = Tk()
+main_window.geometry("420x420")
+main_window.title("NBA NOW")
 
 def score_windowP():
     n = 0.030
@@ -21,7 +24,6 @@ def score_windowP():
 
     stats = get_links()['leagueRosterPlayers']
     players = get(BASE_URL + stats).json()['league']['standard']
-
 
     for player in players:
         fname = player['firstName']
@@ -40,16 +42,26 @@ def score_windowP():
         borderwidth= 5,
         justify= LEFT)
         data.place(relx= 0, rely= n, anchor=N)
-            
+                
         n+= 0.45
         data.pack() # your labels, entries, whatever you whant inside your frame
 
     frame2.update() # update frame2 height so it's no longer 0 ( height is 0 when it has just been created )
     canvas_container.configure(yscrollcommand=myscrollbar.set, scrollregion="0 0 0 %s" % frame2.winfo_height()) # the scrollregion mustbe the size of the frame inside it,
-                                                                                                                #in this case "x=0 y=0 width=0 height=frame2height"
-                                                                                                                #width 0 because we only scroll verticaly so don't mind about the width.
+                                                                                                                    #in this case "x=0 y=0 width=0 height=frame2height"
+                                                                                                                    #width 0 because we only scroll verticaly so don't mind about the width.
 
     canvas_container.pack(side=LEFT)
     myscrollbar.pack(side=RIGHT, fill = Y)
 
     frame_container.pack()
+
+players = Button(main_window, text= "Player Info",
+font=('Arial', 12, 'bold'),
+justify=CENTER,
+state=ACTIVE,
+bd=1,
+command=score_windowP)
+players.place(relx=0.5, rely=0.8, anchor=S)
+
+main_window.mainloop()
