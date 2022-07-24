@@ -78,7 +78,7 @@ def get_players():
 
 #Desarrollar mas el programa, agregar un menu que permita al usuario elegir cualquiera de los 3 metodos, agregar mas metodos como mostrar a los jugadores lideres en puntos, etc.
 
-get_scoreboard()
+get_players()
 '''
 get_players()
 get_scoreboard()
