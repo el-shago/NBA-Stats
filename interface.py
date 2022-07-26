@@ -8,6 +8,9 @@ from tkinter import ttk
 main_window = Tk()
 main_window.geometry("420x420")
 main_window.title("NBA NOW")
+image = PhotoImage(file='fotillos/baloncesto.png')
+main_window.iconphoto(True, image)
+main_window.config(background='#1d428a')
 
 def score_windowP():
     n = 0.030
