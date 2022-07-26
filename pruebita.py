@@ -24,8 +24,9 @@ def score_windowP():
     score_window.title("Scoreboard")
     frame_container=Frame(score_window)
 
-    canvas_container=Canvas(frame_container, height=420)
+    canvas_container=Canvas(frame_container, height=420, width=390)
     frame2=Frame(canvas_container)
+    
     myscrollbar=Scrollbar(frame_container,orient="vertical",command=canvas_container.yview) # will be visible if the frame2 is to to big for the canvas
     canvas_container.create_window((0,0),window=frame2,anchor='nw')
 
@@ -41,12 +42,14 @@ def score_windowP():
         period = game['period']
 
         data = Label(frame2, text=f"{home_team['triCode']} vs {away_team['triCode']}\n{home_team['score']} - {away_team['score']}\n{period['current']} - {clock}",
-        font=('Arial', 25, 'bold'),
+        font=('Inter', 25, 'bold'),
+        fg="white",
         relief = RIDGE,
         bd=6,
         padx=20,
         pady=20,
         borderwidth= 5,
+        bg="#1d428a",
         justify=CENTER)
         data.place(relx= 0.5, rely= n, anchor=N)
     
@@ -106,12 +109,14 @@ def leaders_windowP():
             
 
         data = Label(myframe, text=f"{i+1}. {name} - {nickname}\n    PPG: {ppg}\n    APG: {apg}",
-        font=('Arial', 25, 'bold'),
-        relief = RIDGE,
+        font=('Inter', 25, 'bold'),
+        fg="white",
+        relief = GROOVE,
         bd=6,
         padx=0,
         pady=30,
-        borderwidth= 5,
+        borderwidth= 2,
+        bg="#1d428a",
         justify= LEFT)
         data.place(relx= 0, rely= n, anchor=N)
             
@@ -159,12 +164,14 @@ def players_windowP():
         team = player['lastAffiliation']
 
         data = Label(myframe, text=f"{fname} {lname} - {team}\n    Number: {jersey}\n    Height: {height} feet\n    Position: {pos}",
-        font=('Arial', 25, 'bold'),
-        relief = RIDGE,
+        font=('Inter', 25, 'bold'),
+        fg="white",
+        bg="#1d428a",
+        relief = GROOVE,
         bd=6,
         padx=0,
         pady=30,
-        borderwidth= 5,
+        borderwidth= 2,
         justify= LEFT)
         data.place(relx= 0, rely= n, anchor=N)
             
@@ -175,8 +182,8 @@ def players_windowP():
 #Label
 Title = Label(main_window, text= "NBA NOW",
 font=('Inter', 45, 'bold'),
-relief = FLAT,
 fg= 'white',
+relief = FLAT,
 padx=20,
 pady=20,
 bg='#1d428a',
@@ -186,28 +193,28 @@ Title.place(relx= 0.5, rely=0.030, anchor=N)
 #Buttons
 score = Button(main_window, text= "Scoreboards",
 font=('Inter', 12, 'bold'),
+fg="#1d428a",
 justify=CENTER,
 state=ACTIVE,
 bd=1,
-fg="#1d428a",
 command=score_windowP)
 score.place(relx=0.1, rely=0.5, anchor=W)
 
 leaders = Button(main_window, text= "Team Leaders", 
 font=('Inter', 12, 'bold'),
+fg="#1d428a",
 justify=CENTER,
 state=ACTIVE,
 bd=1,
-fg="#1d428a",
 command=leaders_windowP)
 leaders.place(relx=0.9, rely=0.5, anchor=E)
 
 players = Button(main_window, text= "Player Info",
 font=('Inter', 12, 'bold'),
+fg="#1d428a",
 justify=CENTER,
 state=ACTIVE,
 bd=1,
-fg="#1d428a",
 command=players_windowP)
 players.place(relx=0.5, rely=0.8, anchor=S)
 
