@@ -174,11 +174,12 @@ def players_windowP():
 
 #Label
 Title = Label(main_window, text= "NBA NOW",
-font=('Inter', 25, 'bold'),
-relief = RAISED,
-bd=6,
+font=('Inter', 45, 'bold'),
+relief = FLAT,
+fg= 'white',
 padx=20,
 pady=20,
+bg='#1d428a',
 justify=CENTER)
 Title.place(relx= 0.5, rely=0.030, anchor=N)
 
@@ -202,7 +203,7 @@ command=leaders_windowP)
 leaders.place(relx=0.9, rely=0.5, anchor=E)
 
 players = Button(main_window, text= "Player Info",
-font=('INTER', 12, 'bold'),
+font=('Inter', 12, 'bold'),
 justify=CENTER,
 state=ACTIVE,
 bd=1,
