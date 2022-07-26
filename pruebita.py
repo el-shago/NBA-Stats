@@ -10,6 +10,9 @@ from nba_now import *
 main_window = Tk()
 main_window.geometry("420x420")
 main_window.title("NBA NOW")
+image = PhotoImage(file='fotillos/baloncesto.png')
+main_window.iconphoto(True, image)
+main_window.config(background='#1d428a')
 
 
 
@@ -171,7 +174,7 @@ def players_windowP():
 
 #Label
 Title = Label(main_window, text= "NBA NOW",
-font=('Arial', 25, 'bold'),
+font=('Inter', 25, 'bold'),
 relief = RAISED,
 bd=6,
 padx=20,
@@ -181,26 +184,29 @@ Title.place(relx= 0.5, rely=0.030, anchor=N)
 
 #Buttons
 score = Button(main_window, text= "Scoreboards",
-font=('Arial', 12, 'bold'),
+font=('Inter', 12, 'bold'),
 justify=CENTER,
 state=ACTIVE,
 bd=1,
+fg="#1d428a",
 command=score_windowP)
 score.place(relx=0.1, rely=0.5, anchor=W)
 
 leaders = Button(main_window, text= "Team Leaders", 
-font=('Arial', 12, 'bold'),
+font=('Inter', 12, 'bold'),
 justify=CENTER,
 state=ACTIVE,
 bd=1,
+fg="#1d428a",
 command=leaders_windowP)
 leaders.place(relx=0.9, rely=0.5, anchor=E)
 
 players = Button(main_window, text= "Player Info",
-font=('Arial', 12, 'bold'),
+font=('INTER', 12, 'bold'),
 justify=CENTER,
 state=ACTIVE,
 bd=1,
+fg="#1d428a",
 command=players_windowP)
 players.place(relx=0.5, rely=0.8, anchor=S)
 
