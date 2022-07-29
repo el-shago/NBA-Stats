@@ -7,6 +7,15 @@ from setuptools import Command
 import nba_now
 from nba_now import *
 
+'''
+Lo que tal vez pueda servir
+
+from time import time, sleep
+while True:
+    sleep(60 - time() % 60)
+	# thing to run
+'''
+
 main_window = Tk()
 main_window.geometry("420x420")
 main_window.title("NBA NOW")
