@@ -18,6 +18,7 @@ while True:
 
 main_window = Tk()
 main_window.geometry("420x420")
+main_window.resizable(False, False)
 main_window.title("NBA NOW")
 image = PhotoImage(file='fotillos/baloncesto.png')
 main_window.iconphoto(True, image)
