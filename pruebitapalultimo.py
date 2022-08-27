@@ -51,7 +51,7 @@ def players_windowP():
         team = player['lastAffiliation']
 
         data = Label(myframe, text=f"{fname} {lname} - {team}\n    Number: {jersey}\n    Height: {height} feet\n    Position: {pos}",
-        font=('Arial', 25, 'bold'),
+        font=('Arial', 12, 'bold'),
         relief = RIDGE,
         bd=6,
         padx=0,
